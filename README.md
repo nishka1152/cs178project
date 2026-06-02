@@ -1,1 +1,1 @@
-Fashion MNIST dataset
+Using CNN classifier on the Fashion MNIST dataset
