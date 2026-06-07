@@ -1,1 +1,1 @@
-Fashion MNIST dataset
+Using Logistic classifier on the Fashion MNIST dataset
