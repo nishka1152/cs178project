@@ -1,22 +1,25 @@
 #%%
-from sklearn.datasets import fetch_openml
 import numpy as np
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import fetch_openml
 
 fashion = fetch_openml('Fashion-MNIST', version=1, as_frame=False)
 X, y = fashion.data, fashion.target.astype(int)
-
 X = X / 255.0
 
-from sklearn.model_selection import train_test_split
-X_trainval, X_test, y_trainval, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+# first 60000 = train, last 10000 = test (predefined split)
+X_train_full, y_train_full = X[:60000], y[:60000]
+X_test, y_test = X[60000:], y[60000:]
 
-X_train, X_val, y_train, y_val = train_test_split(X_trainval, y_trainval, test_size=0.25, random_state=42)
+X_train, X_val, y_train, y_val = train_test_split(
+    X_train_full, y_train_full, test_size=0.25, random_state=42
+)
 
-print(X_train.shape)   
-print(X_val.shape)     
-print(X_test.shape) 
+print(f"Train: {X_train.shape}")  
+print(f"Val:   {X_val.shape}")     
+print(f"Test:  {X_test.shape}")
 
 # %%
 
